@@ -5,8 +5,10 @@ using namespace std;
 int main() {
     int opcion = 0;
     int totalVentas = 0;
-    double dineroTotal = 0, totalDescuentos = 0;
-    double ventaMayor = 0, ventaMenor = 0;
+    double dineroTotal = 0;
+    double totalDescuentos = 0;
+    double v_mayor = -1; 
+    double v_menor = -1; 
 
     do {
         cout << "\n--- TIENDITA DE BARRIO ---" << endl;
@@ -48,10 +50,70 @@ int main() {
                 }
             }
 
-            cout << "Subtotal acumulado de esta venta: Q" << subtotalVenta << endl;
+            if (subtotalVenta > 0) {
+                double porc_desc = 0;
+
+                if (subtotalVenta < 100) {
+                    porc_desc = 0.0;
+                } else if (subtotalVenta >= 100 && subtotalVenta < 500) {
+                    porc_desc = 0.05;
+                } else {
+                    porc_desc = 0.10;
+                }
+
+                double desc = subtotalVenta * porc_desc;
+                double sub_con_desc = subtotalVenta - desc;
+                double iva = sub_con_desc * 0.12;
+                double total = sub_con_desc + iva;
+
+                cout << "\nTotal a pagar: Q" << total << endl;
+                
+                double pago = 0;
+                cout << "Monto recibido: Q";
+                cin >> pago;
+
+                while (pago < total) {
+                    cout << "Error: Dinero insuficiente. Ingrese un monto valido: Q";
+                    cin >> pago;
+                }
+
+                double cambio = pago - total;
+
+                cout << "\n--- RECIBO ---" << endl;
+                cout << "Subtotal: Q" << subtotalVenta << endl;
+                cout << "Descuento: Q" << desc << endl;
+                cout << "IVA (12%): Q" << iva << endl;
+                cout << "TOTAL: Q" << total << endl;
+                cout << "Pago: Q" << pago << endl;
+                cout << "Cambio: Q" << cambio << endl;
+
+                totalVentas++;
+                dineroTotal += total;
+                totalDescuentos += desc;
+
+                if (v_mayor == -1 || total > v_mayor) {
+                    v_mayor = total;
+                }
+                if (v_menor == -1 || total < v_menor) {
+                    v_menor = total;
+                }
+            } else {
+                cout << "No se agregaron productos a la venta." << endl;
+            }
         } 
         else if (opcion == 2) {
-            cout << "\n[Resumen parcial en desarrollo para el Hito 2]" << endl;
+            cout << "\n--- RESUMEN PARCIAL ---" << endl;
+            if (totalVentas == 0) {
+                cout << "No se han realizado ventas todavia." << endl;
+            } else {
+                double promedio = dineroTotal / totalVentas;
+                cout << "Cantidad de ventas: " << totalVentas << endl;
+                cout << "Total dinero: Q" << dineroTotal << endl;
+                cout << "Total descuentos: Q" << totalDescuentos << endl;
+                cout << "Venta mayor: Q" << v_mayor << endl;
+                cout << "Venta menor: Q" << v_menor << endl;
+                cout << "Promedio: Q" << promedio << endl;
+            }
         }
 
     } while (opcion != 3);
