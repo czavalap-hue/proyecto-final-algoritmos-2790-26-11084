@@ -7,8 +7,14 @@ using namespace std;
 int main() {
     int opcion = 0;
     int totalVentas = 0;
-    double dineroTotal = 0, totalDescuentos = 0;
-    double ventaMayor = 0, ventaMenor = 0;
+
+    double dineroTotal = 0;
+    double totalDescuentos = 0;
+    double totalBruto = 0;
+
+    double ventaMayor = 0;
+    double ventaMenor = 0;
+    double promedioVenta = 0;
 
     do {
         cout << "\n--- TIENDITA DE BARRIO ---" << endl;
@@ -64,8 +70,9 @@ int main() {
                 totalPagar = subtotalVenta - descuento;
 
                 totalVentas++;
-                dineroTotal += totalPagar;
+                totalBruto += subtotalVenta;
                 totalDescuentos += descuento;
+                dineroTotal += totalPagar;
 
                 if (totalVentas == 1) {
                     ventaMayor = totalPagar;
@@ -84,8 +91,9 @@ int main() {
                 cout << fixed << setprecision(2);
                 cout << "\n--- FACTURA DE VENTA ---" << endl;
                 cout << "Subtotal: Q" << subtotalVenta << endl;
-                cout << "Descuento aplicado: Q" << descuento << endl;
+                cout << "Descuento: Q" << descuento << endl;
                 cout << "Total a pagar: Q" << totalPagar << endl;
+
                 cout << "\nVenta registrada correctamente." << endl;
             }
             else {
@@ -94,12 +102,17 @@ int main() {
         }
         else if (opcion == 2) {
             cout << fixed << setprecision(2);
+
             cout << "\n--- RESUMEN PARCIAL DE CAJA ---" << endl;
             cout << "Total de ventas: " << totalVentas << endl;
-            cout << "Dinero recaudado: Q" << dineroTotal << endl;
+            cout << "Total bruto: Q" << totalBruto << endl;
             cout << "Descuentos acumulados: Q" << totalDescuentos << endl;
+            cout << "Dinero recaudado: Q" << dineroTotal << endl;
 
             if (totalVentas > 0) {
+                promedioVenta = dineroTotal / totalVentas;
+
+                cout << "Promedio por venta: Q" << promedioVenta << endl;
                 cout << "Venta mayor: Q" << ventaMayor << endl;
                 cout << "Venta menor: Q" << ventaMenor << endl;
             }
@@ -111,11 +124,30 @@ int main() {
     } while (opcion != 3);
 
     cout << fixed << setprecision(2);
-    cout << "\n--- CIERRE DE CAJA ---" << endl;
-    cout << "Total de ventas: " << totalVentas << endl;
-    cout << "Dinero recaudado: Q" << dineroTotal << endl;
+
+    cout << "\n================================" << endl;
+    cout << "       REPORTE FINAL DE CAJA" << endl;
+    cout << "================================" << endl;
+
+    cout << "Ventas realizadas: " << totalVentas << endl;
+    cout << "Total bruto: Q" << totalBruto << endl;
     cout << "Descuentos otorgados: Q" << totalDescuentos << endl;
-    cout << "\nCaja cerrada correctamente." << endl;
+    cout << "Total neto recaudado: Q" << dineroTotal << endl;
+
+    if (totalVentas > 0) {
+        promedioVenta = dineroTotal / totalVentas;
+
+        cout << "Promedio por venta: Q" << promedioVenta << endl;
+        cout << "Venta mayor: Q" << ventaMayor << endl;
+        cout << "Venta menor: Q" << ventaMenor << endl;
+    }
+    else {
+        cout << "No se realizaron ventas durante el dia." << endl;
+    }
+
+    cout << "================================" << endl;
+    cout << "Caja cerrada correctamente." << endl;
 
     return 0;
 }
+
