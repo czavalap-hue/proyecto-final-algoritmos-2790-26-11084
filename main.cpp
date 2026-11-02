@@ -1,4 +1,6 @@
+
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
 
@@ -23,6 +25,8 @@ int main() {
             double precio = -1;
             int cantidad = 0;
             double subtotalVenta = 0;
+            double descuento = 0;
+            double totalPagar = 0;
 
             cout << "\n--- NUEVA VENTA (0 para terminar) ---" << endl;
 
@@ -49,34 +53,51 @@ int main() {
             }
 
             if (subtotalVenta > 0) {
+
+                if (subtotalVenta >= 1000) {
+                    descuento = subtotalVenta * 0.10;
+                }
+                else if (subtotalVenta >= 500) {
+                    descuento = subtotalVenta * 0.05;
+                }
+
+                totalPagar = subtotalVenta - descuento;
+
                 totalVentas++;
-                dineroTotal += subtotalVenta;
+                dineroTotal += totalPagar;
+                totalDescuentos += descuento;
 
                 if (totalVentas == 1) {
-                    ventaMayor = subtotalVenta;
-                    ventaMenor = subtotalVenta;
+                    ventaMayor = totalPagar;
+                    ventaMenor = totalPagar;
                 }
                 else {
-                    if (subtotalVenta > ventaMayor) {
-                        ventaMayor = subtotalVenta;
+                    if (totalPagar > ventaMayor) {
+                        ventaMayor = totalPagar;
                     }
 
-                    if (subtotalVenta < ventaMenor) {
-                        ventaMenor = subtotalVenta;
+                    if (totalPagar < ventaMenor) {
+                        ventaMenor = totalPagar;
                     }
                 }
 
+                cout << fixed << setprecision(2);
+                cout << "\n--- FACTURA DE VENTA ---" << endl;
+                cout << "Subtotal: Q" << subtotalVenta << endl;
+                cout << "Descuento aplicado: Q" << descuento << endl;
+                cout << "Total a pagar: Q" << totalPagar << endl;
                 cout << "\nVenta registrada correctamente." << endl;
-                cout << "Subtotal de esta venta: Q" << subtotalVenta << endl;
             }
             else {
                 cout << "\nNo se registro ninguna venta." << endl;
             }
         }
         else if (opcion == 2) {
+            cout << fixed << setprecision(2);
             cout << "\n--- RESUMEN PARCIAL DE CAJA ---" << endl;
-            cout << "Total de ventas realizadas: " << totalVentas << endl;
-            cout << "Dinero acumulado: Q" << dineroTotal << endl;
+            cout << "Total de ventas: " << totalVentas << endl;
+            cout << "Dinero recaudado: Q" << dineroTotal << endl;
+            cout << "Descuentos acumulados: Q" << totalDescuentos << endl;
 
             if (totalVentas > 0) {
                 cout << "Venta mayor: Q" << ventaMayor << endl;
@@ -89,9 +110,12 @@ int main() {
 
     } while (opcion != 3);
 
-    cout << "\nCaja cerrada correctamente." << endl;
+    cout << fixed << setprecision(2);
+    cout << "\n--- CIERRE DE CAJA ---" << endl;
     cout << "Total de ventas: " << totalVentas << endl;
     cout << "Dinero recaudado: Q" << dineroTotal << endl;
+    cout << "Descuentos otorgados: Q" << totalDescuentos << endl;
+    cout << "\nCaja cerrada correctamente." << endl;
 
     return 0;
 }
