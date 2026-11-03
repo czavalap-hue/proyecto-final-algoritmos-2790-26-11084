@@ -62,6 +62,7 @@ int main() {
     double promedioVenta = 0;
 
     do {
+
         cout << "\n================================" << endl;
         cout << "       TIENDITA DE BARRIO" << endl;
         cout << "================================" << endl;
@@ -91,6 +92,7 @@ int main() {
                 precio = leerDouble("Precio del producto: Q", 0);
 
                 if (precio != 0) {
+
                     cantidad = leerEntero("Cantidad (1-100): ", 1, 100);
 
                     subtotalVenta += precio * cantidad;
@@ -99,28 +101,37 @@ int main() {
 
             if (subtotalVenta > 0) {
 
-                // Aplicar descuentos
+                // Aplicar descuentos segun el subtotal
+
                 if (subtotalVenta >= 500) {
                     descuento = subtotalVenta * 0.10;
                 }
                 else if (subtotalVenta >= 100) {
                     descuento = subtotalVenta * 0.05;
                 }
+                else {
+                    descuento = 0;
+                }
 
+                // Calcular total a pagar
                 totalPagar = subtotalVenta - descuento;
 
                 // Solicitar pago y validar
                 do {
+
                     pago = leerDouble("Ingrese el dinero recibido: Q", 0);
 
                     if (pago < totalPagar) {
+
+                        cout << fixed << setprecision(2);
+
                         cout << "Pago insuficiente. Faltan Q"
-                             << fixed << setprecision(2)
                              << totalPagar - pago << endl;
                     }
 
                 } while (pago < totalPagar);
 
+                // Calcular cambio
                 cambio = pago - totalPagar;
 
                 // Actualizar acumuladores
@@ -131,10 +142,12 @@ int main() {
 
                 // Identificar venta mayor y menor
                 if (totalVentas == 1) {
+
                     ventaMayor = totalPagar;
                     ventaMenor = totalPagar;
                 }
                 else {
+
                     if (totalPagar > ventaMayor) {
                         ventaMayor = totalPagar;
                     }
@@ -144,6 +157,7 @@ int main() {
                     }
                 }
 
+                // Mostrar factura
                 cout << fixed << setprecision(2);
 
                 cout << "\n========== FACTURA ==========" << endl;
@@ -157,6 +171,7 @@ int main() {
                 cout << "Venta registrada correctamente." << endl;
             }
             else {
+
                 cout << "\nNo se registro ninguna venta." << endl;
             }
         }
@@ -180,6 +195,7 @@ int main() {
                 cout << "Venta menor: Q" << ventaMenor << endl;
             }
             else {
+
                 cout << "Todavia no se han registrado ventas." << endl;
             }
 
@@ -209,6 +225,7 @@ int main() {
         cout << "Venta menor: Q" << ventaMenor << endl;
     }
     else {
+
         cout << "No se realizaron ventas durante el dia." << endl;
     }
 
@@ -218,3 +235,4 @@ int main() {
 
     return 0;
 }
+
