@@ -71,7 +71,7 @@ Se realizaron las siguientes pruebas para comprobar el funcionamiento del progra
 
 **Resultado esperado:** El programa aplica correctamente los descuentos establecidos.
 
-![Prueba 1: Descuentos](capturas/Primera captura de codigo.png) (capturas/Segunda captura de codigo.png)
+![Prueba 1: Descuentos]("C:\Users\carlo\OneDrive\Documents\Proyecto Vini\Capturas de codigo\Primera captura de codigo .png") ("C:\Users\carlo\OneDrive\Documents\Proyecto Vini\Capturas de codigo\Segunda captura de codigo.png")
 
 
 ### Prueba 2: Venta de Q500.00
