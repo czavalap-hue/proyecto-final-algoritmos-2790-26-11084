@@ -1,11 +1,55 @@
 
 #include <iostream>
 #include <iomanip>
-#include <limits>
+#include <sstream>
+#include <string>
 
 using namespace std;
 
+// Funcion para leer numeros decimales
+double leerDouble(string mensaje, double minimo) {
+    string entrada;
+    double valor;
+    char sobrante;
+
+    while (true) {
+        cout << mensaje;
+        getline(cin, entrada);
+
+        stringstream ss(entrada);
+
+        if (ss >> valor && !(ss >> sobrante) && valor >= minimo) {
+            return valor;
+        }
+
+        cout << "Error: Ingrese un numero valido y no negativo." << endl;
+    }
+}
+
+// Funcion para leer numeros enteros
+int leerEntero(string mensaje, int minimo, int maximo) {
+    string entrada;
+    int valor;
+    char sobrante;
+
+    while (true) {
+        cout << mensaje;
+        getline(cin, entrada);
+
+        stringstream ss(entrada);
+
+        if (ss >> valor && !(ss >> sobrante)
+            && valor >= minimo && valor <= maximo) {
+            return valor;
+        }
+
+        cout << "Error: Ingrese un numero entero entre "
+             << minimo << " y " << maximo << "." << endl;
+    }
+}
+
 int main() {
+
     int opcion = 0;
     int totalVentas = 0;
 
@@ -18,47 +62,34 @@ int main() {
     double promedioVenta = 0;
 
     do {
-        cout << "\n--- TIENDITA DE BARRIO ---" << endl;
+        cout << "\n================================" << endl;
+        cout << "       TIENDITA DE BARRIO" << endl;
+        cout << "================================" << endl;
         cout << "1. Registrar venta" << endl;
         cout << "2. Ver resumen parcial" << endl;
         cout << "3. Cerrar caja y salir" << endl;
-        cout << "Seleccione una opcion: ";
+        cout << "================================" << endl;
 
-        while (!(cin >> opcion)) {
-            cout << "Error: Ingrese una opcion numerica: ";
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        }
+        opcion = leerEntero("Seleccione una opcion: ", 1, 3);
 
-        if (opcion < 1 || opcion > 3) {
-            cout << "Opcion invalida. Intente de nuevo." << endl;
-        }
-        else if (opcion == 1) {
+        if (opcion == 1) {
+
             double precio = -1;
             int cantidad = 0;
+
             double subtotalVenta = 0;
             double descuento = 0;
             double totalPagar = 0;
 
-            cout << "\n--- NUEVA VENTA (0 para terminar) ---" << endl;
+            cout << "\n--- NUEVA VENTA ---" << endl;
+            cout << "Ingrese 0 en el precio para terminar." << endl;
 
             while (precio != 0) {
-                cout << "Precio del producto: Q";
 
-                while (!(cin >> precio) || precio < 0) {
-                    cout << "Error: Ingrese un precio valido y no negativo: Q";
-                    cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                }
+                precio = leerDouble("Precio del producto: Q", 0);
 
                 if (precio != 0) {
-                    cout << "Cantidad (1-100): ";
-
-                    while (!(cin >> cantidad) || cantidad < 1 || cantidad > 100) {
-                        cout << "Error: Ingrese una cantidad entre 1 y 100: ";
-                        cin.clear();
-                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                    }
+                    cantidad = leerEntero("Cantidad (1-100): ", 1, 100);
 
                     subtotalVenta += precio * cantidad;
                 }
@@ -66,6 +97,7 @@ int main() {
 
             if (subtotalVenta > 0) {
 
+                // Aplicar descuentos
                 if (subtotalVenta >= 1000) {
                     descuento = subtotalVenta * 0.10;
                 }
@@ -75,11 +107,13 @@ int main() {
 
                 totalPagar = subtotalVenta - descuento;
 
+                // Actualizar acumuladores
                 totalVentas++;
                 totalBruto += subtotalVenta;
                 dineroTotal += totalPagar;
                 totalDescuentos += descuento;
 
+                // Identificar venta mayor y menor
                 if (totalVentas == 1) {
                     ventaMayor = totalPagar;
                     ventaMenor = totalPagar;
@@ -95,26 +129,32 @@ int main() {
                 }
 
                 cout << fixed << setprecision(2);
-                cout << "\n--- FACTURA DE VENTA ---" << endl;
+
+                cout << "\n========== FACTURA ==========" << endl;
                 cout << "Subtotal: Q" << subtotalVenta << endl;
                 cout << "Descuento aplicado: Q" << descuento << endl;
                 cout << "Total a pagar: Q" << totalPagar << endl;
-                cout << "\nVenta registrada correctamente." << endl;
+                cout << "=============================" << endl;
+
+                cout << "Venta registrada correctamente." << endl;
             }
             else {
                 cout << "\nNo se registro ninguna venta." << endl;
             }
         }
+
         else if (opcion == 2) {
+
             cout << fixed << setprecision(2);
 
-            cout << "\n--- RESUMEN PARCIAL DE CAJA ---" << endl;
-            cout << "Total de ventas: " << totalVentas << endl;
+            cout << "\n====== RESUMEN PARCIAL ======" << endl;
+            cout << "Ventas realizadas: " << totalVentas << endl;
             cout << "Total bruto: Q" << totalBruto << endl;
             cout << "Descuentos acumulados: Q" << totalDescuentos << endl;
             cout << "Dinero recaudado: Q" << dineroTotal << endl;
 
             if (totalVentas > 0) {
+
                 promedioVenta = dineroTotal / totalVentas;
 
                 cout << "Promedio por venta: Q" << promedioVenta << endl;
@@ -124,14 +164,17 @@ int main() {
             else {
                 cout << "Todavia no se han registrado ventas." << endl;
             }
+
+            cout << "=============================" << endl;
         }
 
     } while (opcion != 3);
 
+    // Reporte final
     cout << fixed << setprecision(2);
 
     cout << "\n================================" << endl;
-    cout << "       REPORTE FINAL DE CAJA" << endl;
+    cout << "        REPORTE FINAL DE CAJA" << endl;
     cout << "================================" << endl;
 
     cout << "Ventas realizadas: " << totalVentas << endl;
@@ -140,6 +183,7 @@ int main() {
     cout << "Total neto recaudado: Q" << dineroTotal << endl;
 
     if (totalVentas > 0) {
+
         promedioVenta = dineroTotal / totalVentas;
 
         cout << "Promedio por venta: Q" << promedioVenta << endl;
@@ -151,7 +195,8 @@ int main() {
     }
 
     cout << "================================" << endl;
-    cout << "Caja cerrada correctamente." << endl;
+    cout << "         CAJA CERRADA" << endl;
+    cout << "================================" << endl;
 
     return 0;
 }
