@@ -48,7 +48,7 @@ int leerEntero(string mensaje, int minimo, int maximo) {
     }
 }
 
-int main() {
+1int main() {
     cout << "\n*** VERSION ACTUALIZADA DEL PROGRAMA ***" << endl;
     int opcion = 0;
     int totalVentas = 0;
