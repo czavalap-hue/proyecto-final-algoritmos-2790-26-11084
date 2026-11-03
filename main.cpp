@@ -80,6 +80,8 @@ int main() {
             double subtotalVenta = 0;
             double descuento = 0;
             double totalPagar = 0;
+            double pago = 0;
+            double cambio = 0;
 
             cout << "\n--- NUEVA VENTA ---" << endl;
             cout << "Ingrese 0 en el precio para terminar." << endl;
@@ -98,14 +100,28 @@ int main() {
             if (subtotalVenta > 0) {
 
                 // Aplicar descuentos
-                if (subtotalVenta >= 1000) {
+                if (subtotalVenta >= 500) {
                     descuento = subtotalVenta * 0.10;
                 }
-                else if (subtotalVenta >= 500) {
+                else if (subtotalVenta >= 100) {
                     descuento = subtotalVenta * 0.05;
                 }
 
                 totalPagar = subtotalVenta - descuento;
+
+                // Solicitar pago y validar
+                do {
+                    pago = leerDouble("Ingrese el dinero recibido: Q", 0);
+
+                    if (pago < totalPagar) {
+                        cout << "Pago insuficiente. Faltan Q"
+                             << fixed << setprecision(2)
+                             << totalPagar - pago << endl;
+                    }
+
+                } while (pago < totalPagar);
+
+                cambio = pago - totalPagar;
 
                 // Actualizar acumuladores
                 totalVentas++;
@@ -134,6 +150,8 @@ int main() {
                 cout << "Subtotal: Q" << subtotalVenta << endl;
                 cout << "Descuento aplicado: Q" << descuento << endl;
                 cout << "Total a pagar: Q" << totalPagar << endl;
+                cout << "Pago recibido: Q" << pago << endl;
+                cout << "Cambio: Q" << cambio << endl;
                 cout << "=============================" << endl;
 
                 cout << "Venta registrada correctamente." << endl;
