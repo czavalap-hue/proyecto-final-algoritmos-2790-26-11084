@@ -71,7 +71,8 @@ Se realizaron las siguientes pruebas para comprobar el funcionamiento del progra
 
 **Resultado esperado:** El programa aplica correctamente los descuentos establecidos.
 
-![Prueba 1: Descuentos](capturas/prueba1_descuentos.png)
+![Prueba 1: Descuentos](capturas/Primera captura de codigo.png) (capturas/Segunda captura de codigo.png)
+
 
 ### Prueba 2: Venta de Q500.00
 
@@ -83,7 +84,7 @@ Se realizaron las siguientes pruebas para comprobar el funcionamiento del progra
 
 **Resultado esperado:** El programa aplica correctamente el descuento del 10 %.
 
-![Prueba 2: Descuento del 10 %](capturas/prueba2_descuento10.png)
+![Prueba 2: Descuento del 10 %](capturas/Tercera captura de codigo.png)
 
 ### Prueba 3: Validación de datos incorrectos
 
@@ -98,7 +99,8 @@ Se realizaron las siguientes pruebas:
 
 **Resultado esperado:** El programa muestra mensajes de error y solicita nuevamente los datos.
 
-![Prueba 3: Validaciones](capturas/prueba3_validaciones.png)
+![Prueba 3: Validaciones](capturas/Cuarta captura de codigo.png) (capturas/Quinta captura de codigo.png)
+
 
 ### Prueba 4: Resumen del día sin ventas
 
@@ -111,7 +113,7 @@ Se realizaron las siguientes pruebas:
 - Dinero recaudado: Q0.00.
 - Mensaje indicando que todavía no se han registrado ventas.
 
-![Prueba 4: Resumen sin ventas](capturas/prueba4_resumen.png)
+![Prueba 4: Resumen sin ventas](capturas/Sexta captura de codigo.png)
 
 ### Prueba 5: Pago menor al total
 
@@ -124,7 +126,7 @@ Se ingresa inicialmente una cantidad menor al total de la compra.
 - Solicita nuevamente el monto recibido.
 - Cuando el pago es suficiente, calcula el cambio correctamente.
 
-![Prueba 5: Pago insuficiente](capturas/prueba5_pago.png)
+![Prueba 5: Pago insuficiente](capturas/Septima captura de codigo.png)
 
 ## 6. Uso de IA
 
