@@ -1,4 +1,35 @@
+
+# Ejecutables
 *.exe
 *.out
 *.app
-.vscode/
+
+# Archivos de compilación de C++
+*.obj
+*.o
+*.ilk
+*.pdb
+*.idb
+*.pch
+*.ipch
+
+# Archivos temporales de Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Carpetas de compilación
+build/
+out/
+Debug/
+Release/
+x64/
+x86/
+vc/
+
+# Archivos temporales
+*.log
+*.tmp
+*.bak
