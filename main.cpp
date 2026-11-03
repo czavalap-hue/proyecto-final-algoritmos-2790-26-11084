@@ -101,22 +101,30 @@ int main() {
 
             if (subtotalVenta > 0) {
 
-                // Aplicar descuentos segun el subtotal
+                // APLICAR DESCUENTOS CORRECTAMENTE
+                if (subtotalVenta >= 500.00) {
 
-                if (subtotalVenta >= 500) {
                     descuento = subtotalVenta * 0.10;
+
+                    cout << "\nDescuento del 10% aplicado." << endl;
                 }
-                else if (subtotalVenta >= 100) {
+                else if (subtotalVenta >= 100.00) {
+
                     descuento = subtotalVenta * 0.05;
+
+                    cout << "\nDescuento del 5% aplicado." << endl;
                 }
                 else {
-                    descuento = 0;
+
+                    descuento = 0.00;
+
+                    cout << "\nEsta venta no tiene descuento." << endl;
                 }
 
-                // Calcular total a pagar
+                // Calcular total
                 totalPagar = subtotalVenta - descuento;
 
-                // Solicitar pago y validar
+                // Solicitar pago
                 do {
 
                     pago = leerDouble("Ingrese el dinero recibido: Q", 0);
@@ -204,7 +212,7 @@ int main() {
 
     } while (opcion != 3);
 
-    // Reporte final
+    // REPORTE FINAL
     cout << fixed << setprecision(2);
 
     cout << "\n================================" << endl;
@@ -235,4 +243,5 @@ int main() {
 
     return 0;
 }
+
 
