@@ -71,7 +71,7 @@ Se realizaron las siguientes pruebas para comprobar el funcionamiento del progra
 
 **Resultado esperado:** El programa aplica correctamente los descuentos establecidos.
 
-![Prueba 1: Descuentos](Capturas de codigo/Segunda captura de codigo .png) ![Prueba 1](<Capturas de codigo/Primera captura de codigo .png>)
+![Prueba 1] (Capturas de codigo/Segunda captura de codigo .png) (<Capturas de codigo/Primera captura de codigo .png>)
 
 
 ### Prueba 2: Venta de Q500.00
